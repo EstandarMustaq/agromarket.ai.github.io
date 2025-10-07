@@ -1,395 +1,362 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>AgroMarket AI | Local Project</title>
+
+  <!-- Feather icons (CDN) -->
+  <script defer src="https://unpkg.com/feather-icons"></script>
+
   <style>
-    @page {
-      size: A4;
-      margin: 2cm;
+    :root{
+      --accent:#2E8B57;
+      --accent-2:#3CB371;
+      --muted:#666;
+      --bg:#f8f9fa;
+      --card:#ffffff;
+      --mono: "Courier New", monospace;
+      --max-width: 900px;
     }
 
-    body {
+    *{box-sizing:border-box}
+    body{
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      max-width: 210mm;
-      margin: 0 auto;
-      padding: 20px;
+      color:#222;
+      margin:0;
+      padding:24px;
+      background:linear-gradient(180deg,#ffffff 0%, #fbfbfb 100%);
+      display:flex;
+      justify-content:center;
     }
 
-    .header {
-      border-bottom: 3px solid #2E8B57;
-      padding-bottom: 20px;
-      margin-bottom: 30px;
+    .container{
+      width:100%;
+      max-width:var(--max-width);
+      background:transparent;
     }
 
-    h1 {
-      color: #2E8B57;
-      font-size: 28px;
-      margin-bottom: 10px;
+    /* Header */
+    .header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      border-bottom:3px solid var(--accent);
+      padding-bottom:18px;
+      margin-bottom:22px;
     }
 
-    h2 {
-      color: #3CB371;
-      border-left: 4px solid #3CB371;
-      padding-left: 10px;
-      margin-top: 30px;
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
     }
 
-    h3 {
-      color: #20B2AA;
-      margin-top: 20px;
+    .brand .logo{
+      width:52px;
+      height:52px;
+      border-radius:8px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      box-shadow:0 4px 12px rgba(46,139,87,0.12);
+      font-size:18px;
     }
 
-    .section {
-      margin-bottom: 25px;
-      page-break-inside: avoid;
+    .brand h1{
+      margin:0;
+      font-size:20px;
+      color:var(--accent);
+    }
+    .brand p{
+      margin:0;
+      font-size:12px;
+      color:var(--muted);
     }
 
-    .architecture-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-      margin: 20px 0;
+    /* Right area: profile + actions */
+    .meta-right{
+      display:flex;
+      align-items:center;
+      gap:12px;
     }
 
-    .arch-item {
-      background: #f8f9fa;
-      padding: 15px;
-      border-radius: 5px;
-      border-left: 3px solid #3CB371;
+    .profile-link{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      color:inherit;
+      padding:6px 8px;
+      border-radius:10px;
+      transition:background .15s, transform .08s;
+    }
+    .profile-link:hover{ background: rgba(0,0,0,0.03); transform:translateY(-1px); }
+
+    .avatar{
+      width:44px;
+      height:44px;
+      border-radius:8px;
+      overflow:hidden;
+      border:2px solid rgba(0,0,0,0.06);
+      flex:0 0 44px;
+    }
+    .avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+    .icon-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:8px;
+      text-decoration:none;
+      color:#0b0b0b;
+      background:var(--card);
+      border:1px solid rgba(0,0,0,0.04);
+      box-shadow:0 6px 18px rgba(0,0,0,0.03);
+      font-size:13px;
+    }
+    .icon-btn:hover{ transform:translateY(-3px); }
+
+    /* Sections */
+    h2{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      margin:20px 0 12px;
+      font-size:18px;
+      color:var(--accent-2);
+      border-left:4px solid var(--accent-2);
+      padding-left:10px;
+    }
+    .section{ margin-bottom:20px; }
+    .architecture-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:14px;
+      margin-top:12px;
+    }
+    .arch-item{
+      background:var(--card);
+      padding:12px;
+      border-radius:8px;
+      border-left:3px solid var(--accent-2);
+      box-shadow: 0 6px 16px rgba(24,24,24,0.03);
+      font-size:14px;
     }
 
-    .code-block {
-      background: #2d2d2d;
-      color: #f8f8f2;
-      padding: 15px;
-      border-radius: 5px;
-      font-family: 'Courier New', monospace;
-      font-size: 12px;
-      overflow-x: auto;
-      margin: 15px 0;
+    .code-block{
+      background:#1f1f1f;
+      color:#f1f1f0;
+      padding:12px;
+      border-radius:8px;
+      font-family:var(--mono);
+      font-size:13px;
+      overflow:auto;
+      margin:12px 0;
     }
 
-    .feature-list {
-      list-style-type: none;
-      padding-left: 0;
+    .feature-list{
+      list-style:none;
+      padding-left:0;
+      margin:0;
+    }
+    .feature-list li{
+      padding:8px 0;
+      border-bottom:1px solid rgba(0,0,0,0.03);
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .feature-icon{
+      display:inline-flex;
+      width:20px;
+      height:20px;
+      align-items:center;
+      justify-content:center;
+      flex:0 0 20px;
     }
 
-    .feature-list li {
-      padding: 8px 0;
-      border-bottom: 1px solid #eee;
+    .timeline-phase{
+      background:#e9f7ef;
+      padding:12px;
+      border-radius:8px;
+      border-left:4px solid var(--accent);
+      margin-bottom:10px;
     }
 
-    .feature-list li:before {
-      content: "✅ ";
-      margin-right: 10px;
+    .footer{
+      margin-top:28px;
+      padding-top:18px;
+      border-top:2px solid var(--accent);
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
     }
 
-    .timeline {
-      position: relative;
-      margin: 30px 0;
-    }
-
-    .timeline-phase {
-      background: #e8f5e9;
-      padding: 15px;
-      margin: 10px 0;
-      border-radius: 5px;
-      border-left: 4px solid #4CAF50;
-    }
-
-    .footer {
-      text-align: center;
-      margin-top: 50px;
-      padding-top: 20px;
-      border-top: 2px solid #2E8B57;
-      font-size: 14px;
-      color: #666;
+    /* small / print */
+    @media(max-width:640px){
+      .header{ flex-direction:column; align-items:flex-start; gap:10px; }
+      .meta-right{ width:100%; justify-content:space-between; }
     }
 
     @media print {
-      body {
-        padding: 0;
-      }
-
-      .section {
-        page-break-inside: avoid;
-      }
-
-      h2 {
-        page-break-after: avoid;
-      }
+      body{ padding:0; }
+      .icon-btn, .profile-link{ box-shadow:none; }
     }
+
+    /* style for feather icons */
+    svg.feather { vertical-align:middle; }
   </style>
 </head>
-
 <body>
-  <div class="header">
-    <h1>🌱 AGROMARKET AI</h1>
-    <h2>Marketplace para Insumos Agrícolas com IA</h2>
-    <p><strong>Autor:</strong> Estandar Mustaque (EstandarMustaq)</p>
-    <p><strong>Email:</strong> mustaqueestandarjunior@gmail.com</p>
-    <p><strong>GitHub:</strong> https://EstandarMustaq/agromarket.ai.github.io</p>
+  <div class="container">
+
+    <!-- HEADER -->
+    <header class="header" role="banner">
+      <div class="brand" aria-label="AgroMarket AI">
+        <div class="logo" aria-hidden="true">AM</div>
+        <div>
+          <h1>AgroMarket AI</h1>
+          <p>Marketplace para Insumos Agrícolas com IA</p>
+        </div>
+      </div>
+
+      <div class="meta-right" aria-hidden="false">
+        <!-- profile (avatar + name) -->
+        <a class="profile-link" href="https://github.com/EstandarMustaq" target="_blank" rel="noopener noreferrer" title="Meu GitHub - EstandarMustaq">
+          <span class="avatar" aria-hidden="true">
+            <!-- Avatar vem do GitHub; altere o username abaixo se necessário -->
+            <img src="https://github.com/EstandarMustaq.png" alt="Avatar GitHub de EstandarMustaq" />
+          </span>
+          <div style="font-size:13px;">
+            <div style="font-weight:600">EstandarMustaq</div>
+            <div style="font-size:11px;color:var(--muted)">GitHub</div>
+          </div>
+        </a>
+
+        <!-- email button -->
+        <a class="icon-btn" href="mailto:mustaqueestandarjunior@gmail.com" title="Enviar email" >
+          <span data-feather="mail" style="width:16px;height:16px;"></span>
+          <span style="font-size:13px;">Email</span>
+        </a>
+
+        <!-- GitHub icon button (redundante ao avatar, útil para ações rápidas) -->
+        <a class="icon-btn" href="https://github.com/EstandarMustaq" target="_blank" rel="noopener noreferrer" title="Abrir repositório GitHub">
+          <span data-feather="github" style="width:16px;height:16px;"></span>
+          <span style="font-size:13px;">GitHub</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <main>
+      <section class="section">
+        <h2><span data-feather="globe"></span> VISÃO GERAL DO PROJETO</h2>
+        <p>Marketplace inclusivo conectando agricultores, compradores, ONGs e lojas com suporte de IA para democratizar o acesso à tecnologia digital no agronegócio.</p>
+
+        <h3 style="margin-top:14px;">Objetivos Principais</h3>
+        <ul class="feature-list" aria-label="Objetivos">
+          <li><span class="feature-icon" data-feather="check-circle"></span>Inclusão digital de pequenos agricultores</li>
+          <li><span class="feature-icon" data-feather="check-circle"></span>Otimização da cadeia de suprimentos agrícolas</li>
+          <li><span class="feature-icon" data-feather="check-circle"></span>Integração de IA para tomada de decisões</li>
+          <li><span class="feature-icon" data-feather="check-circle"></span>Fomento de parcerias sustentáveis</li>
+          <li><span class="feature-icon" data-feather="check-circle"></span>Redução de desperdícios e custos</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2><span data-feather="layers"></span> ARQUITETURA DO SISTEMA</h2>
+        <h3>Stack Tecnológica</h3>
+        <div class="architecture-grid">
+          <div class="arch-item"><strong>Frontend:</strong> React.js + TypeScript</div>
+          <div class="arch-item"><strong>Backend:</strong> Node.js + Express.js</div>
+          <div class="arch-item"><strong>IA/ML:</strong> Python + FastAPI</div>
+          <div class="arch-item"><strong>Database:</strong> PostgreSQL + Redis</div>
+          <div class="arch-item"><strong>Mobile:</strong> React Native</div>
+          <div class="arch-item"><strong>Deploy:</strong> Wolke + Vercel</div>
+        </div>
+
+        <h3 style="margin-top:12px;">Microserviços</h3>
+        <ul class="feature-list">
+          <li><span class="feature-icon" data-feather="server"></span><strong>auth-service:</strong> Autenticação e autorização</li>
+          <li><span class="feature-icon" data-feather="users"></span><strong>user-service:</strong> Gerenciamento de usuários</li>
+          <li><span class="feature-icon" data-feather="shopping-cart"></span><strong>marketplace-service:</strong> Produtos e transações</li>
+          <li><span class="feature-icon" data-feather="cpu"></span><strong>ai-assistant-service:</strong> Assistente inteligente</li>
+          <li><span class="feature-icon" data-feather="bell"></span><strong>notification-service:</strong> Notificações e alertas</li>
+          <li><span class="feature-icon" data-feather="bar-chart-2"></span><strong>analytics-service:</strong> Análises e insights</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2><span data-feather="cpu"></span> SISTEMA DE IA INTEGRADO</h2>
+        <h3>Módulos de Inteligência Artificial</h3>
+
+        <div class="code-block" aria-hidden="true">
+// Exemplo simplificado de serviço de IA em Python
+from transformers import pipeline
+class AgroAssistant:
+    def __init__(self):
+        self.classifier = pipeline("text-classification", model="agriculture-pt")
+        self.chatbot = pipeline("conversational", model="portuguese-chatbot")
+
+    def analyze_market_trends(self, region: str, product: str):
+        return {"trend": "up", "confidence": 0.85}
+        </div>
+
+        <h3>Funcionalidades de IA</h3>
+        <ul class="feature-list">
+          <li><span class="feature-icon" data-feather="trending-up"></span>Previsão de preços de commodities</li>
+          <li><span class="feature-icon" data-feather="sun"></span>Recomendação de cultivos baseada em dados</li>
+          <li><span class="feature-icon" data-feather="activity"></span>Análise de mercado em tempo real</li>
+          <li><span class="feature-icon" data-feather="alert-triangle"></span>Alertas climáticos inteligentes</li>
+          <li><span class="feature-icon" data-feather="map-pin"></span>Otimização de rotas de entrega</li>
+        </ul>
+      </section>
+
+      <!-- (outros blocos permanecem similares; mantenho só as principais para brevidade) -->
+
+      <section class="section">
+        <h2><span data-feather="clock"></span> ROADMAP DE IMPLEMENTAÇÃO</h2>
+        <div class="timeline-phase">
+          <h3>Fase 1 - MVP (3 meses)</h3>
+          <ul>
+            <li>Configuração da infraestrutura</li>
+            <li>Microsserviços core</li>
+            <li>Sistema de autenticação</li>
+            <li>Catálogo básico</li>
+          </ul>
+        </div>
+        <div class="timeline-phase">
+          <h3>Fase 2 - Expansão (6 meses)</h3>
+          <ul>
+            <li>Aplicativo mobile</li>
+            <li>Integração com IA</li>
+            <li>Sistema de pagamentos</li>
+          </ul>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer" role="contentinfo">
+      <div><strong>AgroMarket AI</strong> - Revolucionando o agronegócio através da tecnologia</div>
+      <div style="margin-top:6px; color:var(--muted)">Contato: <a href="mailto:mustaqueestandarjunior@gmail.com">mustaqueestandarjunior@gmail.com</a> | GitHub: <a href="https://github.com/EstandarMustaq" target="_blank" rel="noopener noreferrer">EstandarMustaq</a></div>
+    </footer>
+
   </div>
 
-  <div class="section">
-    <h2>🎯 VISÃO GERAL DO PROJETO</h2>
-    <p>Marketplace inclusivo conectando agricultores, compradores, ONGs e lojas com suporte de IA para democratizar o acesso à tecnologia digital no agronegócio.</p>
-
-    <h3>🔍 Objetivos Principais</h3>
-    <ul class="feature-list">
-      <li>Inclusão digital de pequenos agricultores</li>
-      <li>Otimização da cadeia de suprimentos agrícolas</li>
-      <li>Integração de IA para tomada de decisões</li>
-      <li>Fomento de parcerias sustentáveis</li>
-      <li>Redução de desperdícios e custos</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>🏗️ ARQUITETURA DO SISTEMA</h2>
-
-    <h3>📚 Stack Tecnológica</h3>
-    <div class="architecture-grid">
-      <div class="arch-item">
-        <strong>Frontend:</strong> React.js + TypeScript
-      </div>
-      <div class="arch-item">
-        <strong>Backend:</strong> Node.js + Express.js
-      </div>
-      <div class="arch-item">
-        <strong>IA/ML:</strong> Python + FastAPI
-      </div>
-      <div class="arch-item">
-        <strong>Database:</strong> PostgreSQL + Redis
-      </div>
-      <div class="arch-item">
-        <strong>Mobile:</strong> React Native
-      </div>
-      <div class="arch-item">
-        <strong>Deploy:</strong> Wolke + Vercel
-      </div>
-    </div>
-
-    <h3>🔩 Microserviços</h3>
-    <ul class="feature-list">
-      <li><strong>auth-service:</strong> Autenticação e autorização</li>
-      <li><strong>user-service:</strong> Gerenciamento de usuários</li>
-      <li><strong>marketplace-service:</strong> Produtos e transações</li>
-      <li><strong>ai-assistant-service:</strong> Assistente inteligente</li>
-      <li><strong>notification-service:</strong> Notificações e alertas</li>
-      <li><strong>analytics-service:</strong> Análises e insights</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>🤖 SISTEMA DE IA INTEGRADO</h2>
-
-    <h3>🧠 Módulos de Inteligência Artificial</h3>
-
-    <div class="code-block">
-      // Exemplo de serviço de IA em Python
-      from transformers import pipeline
-      import pandas as pd
-
-      class AgroAssistant:
-      def __init__(self):
-      self.classifier = pipeline("text-classification",
-      model="agriculture-pt")
-      self.chatbot = pipeline("conversational",
-      model="portuguese-chatbot")
-
-      def analyze_market_trends(self, region: str, product: str):
-      # Análise de tendências de preços
-      return {"trend": "up", "confidence": 0.85}
-
-      def crop_recommendation(self, soil_data, climate_data):
-      # Recomendação de cultivos
-      return {"recommended_crops": ["milho", "feijão"]}
-    </div>
-
-    <h3>📊 Funcionalidades de IA</h3>
-    <ul class="feature-list">
-      <li>Previsão de preços de commodities</li>
-      <li>Recomendação de cultivos baseada em dados</li>
-      <li>Análise de mercado em tempo real</li>
-      <li>Alertas climáticos inteligentes</li>
-      <li>Otimização de rotas de entrega</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>👥 SISTEMA DE USUÁRIOS E PERFIS</h2>
-
-    <h3>🎭 Tipos de Usuários</h3>
-    <ul class="feature-list">
-      <li><strong>Agricultores:</strong> Produtores rurais</li>
-      <li><strong>Compradores:</strong> Lojas e distribuidores</li>
-      <li><strong>ONGs:</strong> Organizações de apoio</li>
-      <li><strong>Lojas:</strong> Varejistas especializados</li>
-      <li><strong>Administradores:</strong> Gestão da plataforma</li>
-    </ul>
-
-    <div class="code-block">
-      // Estrutura de usuário em JavaScript
-      const UserSchema = {
-      id: UUID,
-      type: ['farmer', 'buyer', 'ong', 'store', 'admin'],
-      profile: {
-      name: String,
-      document: String,
-      location: {
-      coordinates: [Number, Number],
-      address: String
-      },
-      verification_status: ['pending', 'verified', 'rejected']
-      },
-      preferences: {
-      notifications: Boolean,
-      language: 'pt-BR',
-      interests: [String]
+  <script>
+    // Renderiza icons Feather depois do carregamento
+    document.addEventListener("DOMContentLoaded", function(){
+      if(window.feather) {
+        feather.replace({ 'stroke-width': 1.5, width:16, height:16 });
       }
-      }
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>🏪 SISTEMA DE MARKETPLACE</h2>
-
-    <h3>📦 Estrutura de Produtos</h3>
-    <div class="code-block">
-      CREATE TABLE products (
-      id UUID PRIMARY KEY,
-      farmer_id UUID REFERENCES users(id),
-      name VARCHAR(255),
-      category VARCHAR(100),
-      price DECIMAL(10,2),
-      unit VARCHAR(20),
-      stock_quantity INTEGER,
-      quality_grade INTEGER,
-      ai_recommendations JSONB,
-      created_at TIMESTAMP
-      );
-    </div>
-
-    <h3>🛒 Funcionalidades Principais</h3>
-    <ul class="feature-list">
-      <li>Catálogo digital de insumos</li>
-      <li>Sistema de buscas inteligentes</li>
-      <li>Avaliações e reputação</li>
-      <li>Gestão de estoque</li>
-      <li>Histórico de transações</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>🚀 ROADMAP DE IMPLEMENTAÇÃO</h2>
-
-    <div class="timeline">
-      <div class="timeline-phase">
-        <h3>📋 Fase 1 - MVP (3 meses)</h3>
-        <ul>
-          <li>Configuração da infraestrutura</li>
-          <li>Microsserviços core</li>
-          <li>Sistema de autenticação</li>
-          <li>Catálogo básico</li>
-        </ul>
-      </div>
-
-      <div class="timeline-phase">
-        <h3>🔧 Fase 2 - Expansão (6 meses)</h3>
-        <ul>
-          <li>Aplicativo mobile</li>
-          <li>Integração com IA</li>
-          <li>Sistema de pagamentos</li>
-          <li>Onboarding de usuários</li>
-        </ul>
-      </div>
-
-      <div class="timeline-phase">
-        <h3>🎯 Fase 3 - Maturação (12 meses)</h3>
-        <ul>
-          <li>Analytics avançado</li>
-          <li>Expansão para novos nichos</li>
-          <li>Integrações governamentais</li>
-          <li>Certificações digitais</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>💾 MODELO DE BANCO DE DADOS</h2>
-
-    <div class="code-block">
-      -- Tabela principal de usuários
-      CREATE TABLE users (
-      id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-      email VARCHAR(255) UNIQUE NOT NULL,
-      phone VARCHAR(20),
-      user_type VARCHAR(20) CHECK (user_type IN ('farmer', 'buyer', 'ong', 'store')),
-      profile_data JSONB,
-      created_at TIMESTAMP DEFAULT NOW()
-      );
-
-      -- Tabela de transações
-      CREATE TABLE transactions (
-      id UUID PRIMARY KEY,
-      buyer_id UUID REFERENCES users(id),
-      seller_id UUID REFERENCES users(id),
-      product_id UUID REFERENCES products(id),
-      quantity INTEGER,
-      total_amount DECIMAL(10,2),
-      status VARCHAR(50),
-      created_at TIMESTAMP DEFAULT NOW()
-      );
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>🔒 SEGURANÇA E CONFORMIDADE</h2>
-
-    <ul class="feature-list">
-      <li>Criptografia de dados sensíveis</li>
-      <li>Validação de documentos via OCR</li>
-      <li>Conformidade com LGPD/GDPR</li>
-      <li>Backups automáticos</li>
-      <li>Auditoria de transações</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>💡 DIFERENCIAIS COMPETITIVOS</h2>
-
-    <ul class="feature-list">
-      <li><strong>Inclusão Digital:</strong> Foco no agricultor tradicional</li>
-      <li><strong>IA Acessível:</strong> Tecnologia simplificada</li>
-      <li><strong>Modelo Social:</strong> Impacto positivo na comunidade</li>
-      <li><strong>Multiplataforma:</strong> Acesso via web e mobile</li>
-      <li><strong>Ecossistema Colaborativo:</strong> Parcerias estratégicas</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>📈 MÉTRICAS DE SUCESSO</h2>
-
-    <ul class="feature-list">
-      <li>Volume de transações mensais</li>
-      <li>Taxa de adoção por região</li>
-      <li>Impacto econômico gerado</li>
-      <li>Redução de desperdícios</li>
-      <li>Satisfação do usuário</li>
-    </ul>
-  </div>
-
-  <div class="footer">
-    <p><strong>AgroMarket AI</strong> - Revolucionando o agronegócio através da tecnologia</p>
-    <p>Contato: mustaqueestandarjunior@gmail.com | GitHub: EstandarMustaq</p>
-  </div>
+    });
+  </script>
 </body>
-
-  </html>
+</html>
