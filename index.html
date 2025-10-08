@@ -82,14 +82,83 @@
     }
     .icon-btn:hover{ transform:translateY(-3px); }
 
-    h2{ display:flex; gap:8px; align-items:center; margin:20px 0 12px; font-size:18px;
-      color:var(--accent-2); border-left:4px solid var(--accent-2); padding-left:10px; }
+    /* Sections */
+    h2{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      margin:20px 0 12px;
+      font-size:18px;
+      color:var(--accent-2);
+      border-left:4px solid var(--accent-2);
+      padding-left:10px;
+    }
     .section{ margin-bottom:20px; }
-    .feature-list{ list-style:none; padding-left:0; margin:0; }
-    .feature-list li{ padding:8px 0; border-bottom:1px solid rgba(0,0,0,0.03); display:flex; gap:10px; align-items:center; font-size:14px; }
-    .feature-icon{ display:inline-flex; width:20px; height:20px; align-items:center; justify-content:center; flex:0 0 20px; }
+    .architecture-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:14px;
+      margin-top:12px;
+    }
+    .arch-item{
+      background:var(--card);
+      padding:12px;
+      border-radius:8px;
+      border-left:3px solid var(--accent-2);
+      box-shadow: 0 6px 16px rgba(24,24,24,0.03);
+      font-size:14px;
+    }
 
-    .footer{ margin-top:28px; padding-top:18px; border-top:2px solid var(--accent); color:var(--muted); font-size:13px; text-align:center; }
+    .code-block{
+      background:#1f1f1f;
+      color:#f1f1f0;
+      padding:12px;
+      border-radius:8px;
+      font-family:var(--mono);
+      font-size:13px;
+      overflow:auto;
+      margin:12px 0;
+      line-height:1.45;
+    }
+
+    .feature-list{
+      list-style:none;
+      padding-left:0;
+      margin:0;
+    }
+    .feature-list li{
+      padding:8px 0;
+      border-bottom:1px solid rgba(0,0,0,0.03);
+      display:flex;
+      gap:10px;
+      align-items:center;
+      font-size:14px;
+    }
+    .feature-icon{
+      display:inline-flex;
+      width:20px;
+      height:20px;
+      align-items:center;
+      justify-content:center;
+      flex:0 0 20px;
+    }
+
+    .timeline-phase{
+      background:#e9f7ef;
+      padding:12px;
+      border-radius:8px;
+      border-left:4px solid var(--accent);
+      margin-bottom:10px;
+    }
+
+    .footer{
+      margin-top:28px;
+      padding-top:18px;
+      border-top:2px solid var(--accent);
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
+    }
 
     /* ---------- RESPONSIVE: small screens (≤480px) ---------- */
     @media (max-width: 480px) {
@@ -141,6 +210,12 @@
       .icon-btn{ padding:6px; min-width:36px; }
     }
 
+    /* small / print */
+    @media(max-width:640px){
+      .header{ flex-direction:column; align-items:flex-start; gap:10px; }
+      .meta-right{ width:100%; justify-content:space-between; }
+    }    
+
     @media print {
       .header{ border:none; }
       .icon-btn, .profile-link{ box-shadow:none; background:transparent; border:none; }
@@ -183,9 +258,9 @@
           <span style="font-size:13px;">Email</span>
         </a>
 
-        <a class="icon-btn" href="https://github.com/EstandarMustaq" target="_blank" rel="noopener noreferrer" title="Abrir repositório GitHub">
-          <span data-feather="github" style="width:16px;height:16px;"></span>
-          <span style="font-size:13px;">GitHub</span>
+        <a class="icon-btn" href="https://x.com/mqlinux" target="_blank" rel="noopener noreferrer" title="Escreva para mim no X">
+          <span data-feather="twitter" style="width:16px;height:16px;"></span>
+          <span style="font-size:13px;">Twitter</span>
         </a>
       </div>
     </header>
