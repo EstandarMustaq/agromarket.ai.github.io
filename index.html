@@ -13,7 +13,6 @@
       --accent:#2E8B57;
       --accent-2:#3CB371;
       --muted:#666;
-      --bg:#f8f9fa;
       --card:#ffffff;
       --mono: "Courier New", monospace;
       --max-width: 1000px;
@@ -33,13 +32,9 @@
       -moz-osx-font-smoothing:grayscale;
     }
 
-    .container{
-      width:100%;
-      max-width:var(--max-width);
-      background:transparent;
-    }
+    .container{ width:100%; max-width:var(--max-width); background:transparent; }
 
-    /* Header */
+    /* ---------- HEADER (base) ---------- */
     .header{
       display:flex;
       align-items:center;
@@ -50,174 +45,112 @@
       margin-bottom:22px;
     }
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
+    .brand{ display:flex; align-items:center; gap:12px; }
 
     .brand .logo{
-      width:56px;
-      height:56px;
+      width:56px; height:56px;
       border-radius:10px;
       background:linear-gradient(135deg,var(--accent),var(--accent-2));
-      color:#fff;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:700;
-      box-shadow:0 6px 16px rgba(46,139,87,0.12);
-      font-size:18px;
+      color:#fff; display:flex; align-items:center; justify-content:center;
+      font-weight:700; box-shadow:0 6px 16px rgba(46,139,87,0.12); font-size:18px;
+      flex:0 0 56px;
     }
 
-    .brand h1{
-      margin:0;
-      font-size:20px;
-      color:var(--accent);
-    }
-    .brand p{
-      margin:0;
-      font-size:12px;
-      color:var(--muted);
-    }
+    .brand h1{ margin:0; font-size:20px; color:var(--accent); }
+    .brand p{ margin:0; font-size:12px; color:var(--muted); }
 
-    /* Right area: profile + actions */
-    .meta-right{
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
+    .meta-right{ display:flex; align-items:center; gap:12px; }
 
     .profile-link{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      text-decoration:none;
-      color:inherit;
-      padding:6px 10px;
-      border-radius:10px;
+      display:flex; align-items:center; gap:10px;
+      text-decoration:none; color:inherit;
+      padding:6px 10px; border-radius:10px;
       transition:background .12s, transform .08s;
     }
     .profile-link:hover{ background: rgba(0,0,0,0.03); transform:translateY(-1px); }
 
-    .avatar{
-      width:46px;
-      height:46px;
-      border-radius:8px;
-      overflow:hidden;
-      border:2px solid rgba(0,0,0,0.06);
-      flex:0 0 46px;
-    }
+    .avatar{ width:46px; height:46px; border-radius:8px; overflow:hidden;
+      border:2px solid rgba(0,0,0,0.06); flex:0 0 46px; }
     .avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
 
     .icon-btn{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 10px;
-      border-radius:8px;
-      text-decoration:none;
-      color:#0b0b0b;
-      background:var(--card);
-      border:1px solid rgba(0,0,0,0.04);
-      box-shadow:0 6px 18px rgba(0,0,0,0.03);
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px; border-radius:8px; text-decoration:none;
+      color:#0b0b0b; background:var(--card);
+      border:1px solid rgba(0,0,0,0.04); box-shadow:0 6px 18px rgba(0,0,0,0.03);
       font-size:13px;
     }
     .icon-btn:hover{ transform:translateY(-3px); }
 
-    /* Sections */
-    h2{
-      display:flex;
-      gap:8px;
-      align-items:center;
-      margin:20px 0 12px;
-      font-size:18px;
-      color:var(--accent-2);
-      border-left:4px solid var(--accent-2);
-      padding-left:10px;
-    }
+    h2{ display:flex; gap:8px; align-items:center; margin:20px 0 12px; font-size:18px;
+      color:var(--accent-2); border-left:4px solid var(--accent-2); padding-left:10px; }
     .section{ margin-bottom:20px; }
-    .architecture-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:14px;
-      margin-top:12px;
-    }
-    .arch-item{
-      background:var(--card);
-      padding:12px;
-      border-radius:8px;
-      border-left:3px solid var(--accent-2);
-      box-shadow: 0 6px 16px rgba(24,24,24,0.03);
-      font-size:14px;
+    .feature-list{ list-style:none; padding-left:0; margin:0; }
+    .feature-list li{ padding:8px 0; border-bottom:1px solid rgba(0,0,0,0.03); display:flex; gap:10px; align-items:center; font-size:14px; }
+    .feature-icon{ display:inline-flex; width:20px; height:20px; align-items:center; justify-content:center; flex:0 0 20px; }
+
+    .footer{ margin-top:28px; padding-top:18px; border-top:2px solid var(--accent); color:var(--muted); font-size:13px; text-align:center; }
+
+    /* ---------- RESPONSIVE: small screens (≤480px) ---------- */
+    @media (max-width: 480px) {
+      body{ padding:14px; }
+      .container{ padding:0; }
+
+      .header{
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+        padding-bottom:12px;
+      }
+
+      .brand{ gap:10px; }
+      .brand .logo{ width:48px; height:48px; font-size:16px; flex:0 0 48px; }
+      .brand h1{ font-size:16px; }
+      .brand p{ font-size:11px; }
+
+      .meta-right{
+        width:100%;
+        display:flex;
+        justify-content:flex-end;
+        gap:8px;
+        flex-wrap:wrap;
+      }
+
+      .avatar{ width:40px; height:40px; flex:0 0 40px; border-radius:6px; }
+      .icon-btn{ padding:8px; font-size:12px; border-radius:8px; min-width:40px; justify-content:center; }
+
+      .profile-link > div, 
+      .icon-btn span:last-child { display: none; }
+
+      .profile-link{ padding:4px; }
+
+      .header .brand{ width:100%; display:flex; justify-content:flex-start; }
+      .header .meta-right{ margin-top:6px; }
+
+      .section{ margin-bottom:16px; }
+      h2{ font-size:16px; padding-left:8px; border-left-width:3px; }
     }
 
-    .code-block{
-      background:#1f1f1f;
-      color:#f1f1f0;
-      padding:12px;
-      border-radius:8px;
-      font-family:var(--mono);
-      font-size:13px;
-      overflow:auto;
-      margin:12px 0;
-      line-height:1.45;
-    }
-
-    .feature-list{
-      list-style:none;
-      padding-left:0;
-      margin:0;
-    }
-    .feature-list li{
-      padding:8px 0;
-      border-bottom:1px solid rgba(0,0,0,0.03);
-      display:flex;
-      gap:10px;
-      align-items:center;
-      font-size:14px;
-    }
-    .feature-icon{
-      display:inline-flex;
-      width:20px;
-      height:20px;
-      align-items:center;
-      justify-content:center;
-      flex:0 0 20px;
-    }
-
-    .timeline-phase{
-      background:#e9f7ef;
-      padding:12px;
-      border-radius:8px;
-      border-left:4px solid var(--accent);
-      margin-bottom:10px;
-    }
-
-    .footer{
-      margin-top:28px;
-      padding-top:18px;
-      border-top:2px solid var(--accent);
-      color:var(--muted);
-      font-size:13px;
-      text-align:center;
-    }
-
-    /* small / print */
-    @media(max-width:640px){
-      .header{ flex-direction:column; align-items:flex-start; gap:10px; }
-      .meta-right{ width:100%; justify-content:space-between; }
+    /* ---------- RESPONSIVE: very small (≤360px) ---------- */
+    @media (max-width: 360px) {
+      body{ padding:10px; }
+      .brand .logo{ width:42px; height:42px; }
+      .brand h1{ font-size:15px; }
+      .avatar{ width:36px; height:36px; }
+      .icon-btn{ padding:6px; min-width:36px; }
     }
 
     @media print {
-      body{ padding:0; }
-      .icon-btn, .profile-link{ box-shadow:none; }
       .header{ border:none; }
+      .icon-btn, .profile-link{ box-shadow:none; background:transparent; border:none; }
+      .profile-link > div, .icon-btn span:last-child { display:inline; } 
     }
 
-    /* style for feather icons */
-    svg.feather { vertical-align:middle; }
+    /* feather icon alignment */
+    svg.feather{ vertical-align:middle; }
   </style>
+</head>
 </head>
 <body>
   <div class="container">
@@ -233,10 +166,10 @@
       </div>
 
       <div class="meta-right" aria-hidden="false">
-        <!-- profile (avatar + name) -->
+
         <a class="profile-link" href="https://github.com/EstandarMustaq" target="_blank" rel="noopener noreferrer" title="Meu GitHub - EstandarMustaq">
           <span class="avatar" aria-hidden="true">
-            <!-- Avatar vem do GitHub; altere o username abaixo se necessário -->
+
             <img src="https://github.com/EstandarMustaq.png" alt="Avatar GitHub de EstandarMustaq" />
           </span>
           <div style="font-size:13px;">
@@ -245,13 +178,11 @@
           </div>
         </a>
 
-        <!-- email button -->
         <a class="icon-btn" href="mailto:mustaqueestandarjunior@gmail.com" title="Enviar email" >
           <span data-feather="mail" style="width:16px;height:16px;"></span>
           <span style="font-size:13px;">Email</span>
         </a>
 
-        <!-- GitHub icon button (redundant ao avatar, útil para ações rápidas) -->
         <a class="icon-btn" href="https://github.com/EstandarMustaq" target="_blank" rel="noopener noreferrer" title="Abrir repositório GitHub">
           <span data-feather="github" style="width:16px;height:16px;"></span>
           <span style="font-size:13px;">GitHub</span>
@@ -508,7 +439,6 @@ CREATE TABLE transactions (
   </div>
 
   <script>
-    // Renderiza icons Feather depois do carregamento
     document.addEventListener("DOMContentLoaded", function(){
       if(window.feather) {
         feather.replace({ 'stroke-width': 1.5, width:16, height:16 });
